@@ -1,0 +1,58 @@
+---
+title: "Analysis.Rmd"
+author: "Dale Moskoff"
+date: "10/02/2021"
+output: html_document
+---
+
+```{r}
+## Import Sequences.csv file; contains three different sequences of the 16S gene of Borrelia burgdorferi and the corresponding headers.
+
+X<-read.csv("Sequences.csv")
+
+
+
+## Count the numbers of each base pair in each of the three sequences.
+
+Y<-as.character(X$Sequence) # Specify the "Sequence" column as a character object type.
+print(Y) # Print out each sequence.
+NumC<-nchar(gsub("[^C]","",Y)) # Object is a count of the number of C base pairs.
+NumA<-nchar(gsub("[^A]","",Y)) # Object is a count of the number of A base pairs.
+NumG<-nchar(gsub("[^G]","",Y)) # Object is a count of the number of G base pairs.
+NumT<-nchar(gsub("[^T]","",Y)) # Object is a count of the number of T base pairs.
+
+
+
+## Create a table containing the number of each nucleotide for each of the three sequences.
+
+SequenceID<-c("HQ433692.1", "HQ433694.1", "HQ433691.1") # Vector of sequence IDs that correspond with each row in the data frame.
+Data.frame<-as.data.frame(cbind(SequenceID,NumC,NumA,NumG,NumT)) # Create data frame table containing the number of each nucleotide for each of the three sequences.
+colnames(Data.frame) <- c("SequenceID","C Count","A Count","G Count","T Count") # Rename columns.
+print(Data.frame) # Print table.
+
+```
+![](./Bacteria.jpeg)
+[Wikipedia page about Borrelia burgdorferi](https://en.wikipedia.org/wiki/Borrelia_burgdorferi)
+
+```{r}
+## Calculate GC content (% of nucleotides that are G or C)
+
+GCContent<-((NumG+NumC)/(NumG+NumC+NumA+NumT)*100) # Find % of nucleotides that are G or C
+GCContent<-paste(round(GCContent,2),"%",sep="") # Round percentages to two decimal places and add % sign.
+
+
+
+## Create a table showing GC content for each sequence ID.
+
+#First, isolate just the sequence ID from the "Name" column of X, the original input data.
+
+Z<-as.character(X$Name) # Specify "Name" column.
+ID<-gsub(">","",Z) # Remove the ">" before the start of each sequence ID.
+ID<-gsub(" .*","",ID) # Remove everything after the sequence ID.
+
+# Next, create the table.
+
+Data.frame.2<-as.data.frame(cbind(ID,GCContent)) # Create a table showing GC content for each sequence ID.
+colnames(Data.frame.2)<-c("Sequence ID","GC Content") # Rename columns.
+print(Data.frame.2) #View table.
+```
