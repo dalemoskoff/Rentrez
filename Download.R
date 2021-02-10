@@ -18,4 +18,4 @@ header<-gsub("(^>.*sequence)\\n[ATCG].*","\\1",Sequences) #Isolate headers.
 seq<-gsub("^>.*sequence\\n([ATCG].*)","\\1",Sequences) #Isolate sequences.
 Sequences<-data.frame(Header=header,Sequence=seq) #New data frame with separate columns for header and sequence.
 #Save new data frame to file called "Sequences.csv".
-write.csv(Sequences,"Sequences.csv") #
+write.csv(Sequences,"Sequences.csv") 
