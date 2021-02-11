@@ -1,7 +1,7 @@
 ##Load library and download NCBI data. 
 
 library(rentrez) #Load rentrez library
-ncbi_ids<-c("HQ433692.1","HQ433694.1","HQ433691.1") #Create a vector of 3 IDs for records in the NCBI database; IDs are in the form of an NCBI accession followed by a version number.
+ncbi_ids<-c("HQ433692.1","HQ433694.1","HQ433691.1") #Create a vector of 3 IDs for records in the NCBI database; IDs are in the form of an NCBI accession number followed by a version number.
 Bburg<-entrez_fetch(db="nuccore",id=ncbi_ids,rettype="fasta") #Download data from the 'nuccore' NCBI database that matches the three unique IDs specified by the ncbi_ids vector. Get data in fasta format.
 Bburg #View object. Contains 3 different sequences of the 16S gene of Borrelia burgdorferi.
 
