@@ -26,7 +26,7 @@ NumT<-nchar(gsub("[^T]","",Y)) # Object is a count of the number of T base pairs
 ## Create a table containing the number of each nucleotide for each of the three sequences.
 
 SequenceID<-c("HQ433692.1", "HQ433694.1", "HQ433691.1") # Vector of sequence IDs that correspond with each row in the data frame.
-Data.frame<-as.data.frame(cbind(SequenceID,NumC,NumA,NumG,NumT)) # Create data frame table containing the number of each nucleotide for each of the three sequences.
+Data.frame<-as.data.frame(cbind(SequenceID,NumC,NumA,NumG,NumT)) # Create table containing the number of each nucleotide for each of the three sequences.
 colnames(Data.frame) <- c("SequenceID","C Count","A Count","G Count","T Count") # Rename columns.
 print(Data.frame) # Print table.
 
