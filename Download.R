@@ -15,7 +15,9 @@ Sequences<-unlist(Sequences) #Converts object to a dataframe.
 ##Separate sequences from the headers and create a new dataframe.
 
 header<-gsub("(^>.*sequence)\\n[ATCG].*","\\1",Sequences) #Isolate headers.
+header<-gsub(">","",header) #Remove newline character.
 seq<-gsub("^>.*sequence\\n([ATCG].*)","\\1",Sequences) #Isolate sequences.
 Sequences<-data.frame(Header=header,Sequence=seq) #New data frame with separate columns for header and sequence.
 #Save new data frame to file called "Sequences.csv".
 write.csv(Sequences,"Sequences.csv") 
+

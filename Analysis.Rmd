@@ -11,7 +11,6 @@ output: html_document
 X<-read.csv("Sequences.csv")
 
 
-
 ## Count the numbers of each base pair in each of the three sequences.
 
 Y<-as.character(X$Sequence) # Specify the "Sequence" column as a character object type.
@@ -20,7 +19,6 @@ NumC<-nchar(gsub("[^C]","",Y)) # Object is a count of the number of C base pairs
 NumA<-nchar(gsub("[^A]","",Y)) # Object is a count of the number of A base pairs.
 NumG<-nchar(gsub("[^G]","",Y)) # Object is a count of the number of G base pairs.
 NumT<-nchar(gsub("[^T]","",Y)) # Object is a count of the number of T base pairs.
-
 
 
 ## Create a table containing the number of each nucleotide for each of the three sequences.
@@ -44,11 +42,10 @@ GCContent<-paste(round(GCContent,2),"%",sep="") # Round percentages to two decim
 
 ## Create a table showing GC content for each sequence ID.
 
-#First, isolate just the sequence ID from the "Name" column of X, the original input data.
+#First, isolate just the sequence ID from the "Header" column of X, the original input data.
 
-Z<-as.character(X$Name) # Specify "Name" column.
-ID<-gsub(">","",Z) # Remove the ">" before the start of each sequence ID.
-ID<-gsub(" .*","",ID) # Remove everything after the sequence ID.
+Z<-as.character(X$Header) # Specify "Header" column.
+ID<-gsub(" .*","",Z) # Remove everything after the sequence ID.
 
 # Next, create the table.
 
